@@ -19,7 +19,8 @@ int main(int argc, const char * argv[])
         NID_secp112r1, NID_secp112r2,NID_secp128r1, NID_secp128r2, NID_secp160k1, NID_secp160r1, NID_secp160r2, NID_secp192k1, NID_secp224k1,NID_secp224r1, NID_secp256k1, NID_secp384r1, NID_secp521r1, NID_sect113r1, NID_sect113r2, NID_sect131r1, NID_sect131r2, NID_sect163k1, NID_sect163r1, NID_sect163r2 , NID_sect193r1, NID_sect193r2, NID_sect233k1, NID_sect233r1, NID_sect239k1, NID_sect283k1, NID_sect283r1, NID_sect409k1, NID_sect409r1, NID_sect571k1, NID_sect571r1,
         NID_wap_wsg_idm_ecid_wtls1, NID_wap_wsg_idm_ecid_wtls3, NID_wap_wsg_idm_ecid_wtls4, NID_wap_wsg_idm_ecid_wtls5, NID_wap_wsg_idm_ecid_wtls7, NID_wap_wsg_idm_ecid_wtls8, NID_wap_wsg_idm_ecid_wtls9, NID_wap_wsg_idm_ecid_wtls10, NID_wap_wsg_idm_ecid_wtls11, NID_wap_wsg_idm_ecid_wtls12};
     
-    for (int a=0; a<sizeof(NIDs)/sizeof(int); a++) {
+	int a, i;
+    for (a=0; a<sizeof(NIDs)/sizeof(int); a++) {
         printf("\n\nTrying Curve with ID: %d\n", NIDs[a]);
         
         //Our chosen curve must be used by both sides in the exchange
@@ -46,7 +47,7 @@ int main(int argc, const char * argv[])
         unsigned char *sharedSecret = EC_DHE_deriveSecretKey(ec_dhe, peerKey, peerKeyLength, &sharedSecretLength);
         
         printf("\nShared Secret: \n");
-        for(int i=0;i<sharedSecretLength;i++)
+        for(i=0;i<sharedSecretLength;i++)
             printf("%X",sharedSecret[i]);//Hex value
         printf("\n");
         
